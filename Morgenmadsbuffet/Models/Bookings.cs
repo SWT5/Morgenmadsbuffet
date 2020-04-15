@@ -6,17 +6,13 @@ using System.Threading.Tasks;
 
 namespace Morgenmadsbuffet.Models
 {
-    public class Rooms
+    public class Bookings
     {
-        [Key]
         public int RoomNumber { get; set; }
-
-        public int AmountChildren { get; set; }
-
+        public DateTime Date { get; set; }
+        public bool Checkedin { get; set; }
         public int AmountAdults { get; set; }
-
-
-
+        public int AmountChildren { get; set; }
 
     }
 }
