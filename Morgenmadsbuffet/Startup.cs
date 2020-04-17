@@ -34,6 +34,21 @@ namespace Morgenmadsbuffet
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy(
+                    "IsReceptionist",
+                    policyBuilder => policyBuilder
+                        .RequireClaim("Receptionist"));
+
+                options.AddPolicy(
+                    "IsWaiter", 
+                    policyBuilder => policyBuilder
+                        .RequireClaim("Waiter"));
+            });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
