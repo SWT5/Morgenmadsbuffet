@@ -15,5 +15,6 @@ namespace Morgenmadsbuffet.Controllers
         {
             return View();
         }
+       
     }
 }
