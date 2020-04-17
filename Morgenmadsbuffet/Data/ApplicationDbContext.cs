@@ -10,10 +10,10 @@ namespace Morgenmadsbuffet.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=Morgenmadsbuffet;Trusted_Connection=True;MultipleActiveResultSets=true");
-        }
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=Morgenmadsbuffet;Trusted_Connection=True;MultipleActiveResultSets=true");
+        //}
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -26,7 +26,7 @@ namespace Morgenmadsbuffet.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Bookings>().HasKey(b => new {b.RoomNumber, b.Date});
-            //modelBuilder.Entity<IdentityUserLogin<string>>().HasNoKey();
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
