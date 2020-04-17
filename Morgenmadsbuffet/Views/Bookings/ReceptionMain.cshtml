@@ -9,24 +9,28 @@
 <p>
     <a asp-action="Create">Create New Booking</a>
 </p>
+<p>
+    Total Amount of guests today: @Html.DisplayFor(Model => Model.TotalAmountOfGuest)
+</p>
+
 <table class="table">
     <thead>
-        <tr>
-            @*<th>
-                @Html.DisplayNameFor(model => model.AmountAdults)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AmountChildren)
-            </th>*@
-            <th></th>
-        </tr>
+    <tr>
+        <th>
+            Adults
+        </th>
+        <th>
+            Children
+        </th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
-        @*@foreach (var item in Model)
+        @foreach (var item in Model.bookings)
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Checkedin)
+                    @Html.DisplayFor(modelItem => item.RoomNumber)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.AmountAdults)
@@ -34,61 +38,12 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.AmountChildren)
                 </td>
-                <td>
+                @*<td>
                     @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
                     @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
                     @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                </td>
+                </td>*@
             </tr>
         }*@
     </tbody>
 </table>
-
-
-@*@model ReceptionViewModel
-
-    @{
-        ViewData["Title"] = "Index";
-    }
-
-    <h1>Index</h1>
-
-    <p>
-        <a asp-action="Create">Create New Bookings</a>
-    </p>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>
-                CheckedIn
-            </th>
-            <th>
-                AmountAdults
-            </th>
-            <th>
-                AmountChildren
-            </th>
-            <th></th>
-        </tr>
-        </thead>
-        <tbody>
-        @foreach (var item in Model.bookings) {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Checkedin)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AmountAdults)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.AmountChildren)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                </td>
-            </tr>
-        }
-        </tbody>
-    </table>*@
