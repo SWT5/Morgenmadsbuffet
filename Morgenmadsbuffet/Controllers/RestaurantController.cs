@@ -18,9 +18,9 @@ namespace Morgenmadsbuffet.Controllers
             return View("../Bookings/index");
         }
 
-        public IActionResult Edit()
+        public IActionResult Details()
         {
-            return View("../Bookings/Edit");
+            return View("../Bookings/Details");
         }
     }
 }
