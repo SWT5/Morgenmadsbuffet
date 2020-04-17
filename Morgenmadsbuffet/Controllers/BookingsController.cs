@@ -149,5 +149,24 @@ namespace Morgenmadsbuffet.Controllers
         {
             return _context.Bookings.Any(e => e.RoomNumber == id);
         }
+
+
+        // ****************** Recetion part *************************
+        // GET: Bookings reception
+        public async Task<IActionResult> ReceptionMain()
+        {
+            var vm = new ReceptionViewModel();
+            
+            foreach (var booking in vm.bookings)
+            {
+                if (booking.Date != DateTime.Today )
+                {
+                }
+                else 
+                    vm.TotalAmountOfGuest += (booking.AmountAdults + booking.AmountChildren);
+            }
+            vm.bookings = await _context.Bookings.ToListAsync();
+            return View(vm);
+        }
     }
 }
