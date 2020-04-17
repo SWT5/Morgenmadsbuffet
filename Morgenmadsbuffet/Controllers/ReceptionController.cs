@@ -22,7 +22,7 @@ namespace Morgenmadsbuffet.Controllers
 
         public IActionResult Create()
         {
-            return View(new Bookings{ })
+            return View(new Bookings { });
         }
     }
 }
