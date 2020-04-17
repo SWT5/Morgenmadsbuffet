@@ -15,7 +15,12 @@ namespace Morgenmadsbuffet.Controllers
         // GET: /<controller>/
         public IActionResult Index()
         {
-            return View();
+            return View("../Bookings/index");
+        }
+
+        public IActionResult Details()
+        {
+            return View("../Bookings/Details");
         }
     }
 }
