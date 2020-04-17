@@ -152,6 +152,7 @@ namespace Morgenmadsbuffet.Controllers
 
 
         // ****************** Recetion part *************************
+
         // GET: Bookings reception
         public async Task<IActionResult> ReceptionMain()
         {
@@ -170,6 +171,16 @@ namespace Morgenmadsbuffet.Controllers
             vm.bookings = await _context.Bookings.ToListAsync();
             return View(vm);
         }
+
+        public async Task<IActionResult> ReceptionCheckedIn()
+        {
+            var vm = new ReceptionViewModel();
+            vm.bookings = await _context.Bookings.ToListAsync();
+            return View(vm);
+        }
+
+        
+        //***********************Resturant part ****************************************
 
         public async Task<IActionResult> RestaurantMain()
         {
