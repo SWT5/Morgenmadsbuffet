@@ -149,5 +149,12 @@ namespace Morgenmadsbuffet.Controllers
         {
             return _context.Bookings.Any(e => e.RoomNumber == id);
         }
+
+        public async Task<IActionResult> RestaurantMain()
+        {
+            var vm = new RestaurantViewModel();
+            vm.Bookings = await _context.Bookings.ToListAsync();
+            return View(vm);
+        }
     }
 }

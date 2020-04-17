@@ -10,10 +10,10 @@ namespace Morgenmadsbuffet.Models
     {
         public List<Bookings> bookings { get; set; }
 
-        public int totalAmountofGuests()
-        {
+        //public int totalAmountofGuests()
+        //{
 
-        }
+        //}
 
     }
 }
