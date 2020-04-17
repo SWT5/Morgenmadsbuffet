@@ -1,18 +1,24 @@
 ﻿@model ReceptionViewModel
 
 @{
-    ViewData["Title"] = "ReceptionMain";
+    ViewData["Title"] = "ReceptionCheckedIn";
 }
 
-<h1>ReceptionMain</h1>
+<h1>ReceptionCheckedIn</h1>
 
 <p>
-    Total Amount of guests today: @Html.DisplayFor(Model => Model.TotalAmountOfGuest)
+    <a asp-action="Create">Create New Booking</a>
+</p>
+<p>
+    Total Amount of guests checkedIn: @Html.DisplayFor(Model => Model.TotalAmountOgChecked)
 </p>
 
 <table class="table">
     <thead>
     <tr>
+        <th>
+            CheckedIn
+        </th>
         <th>
             RoomNumber
         </th>
@@ -30,6 +36,9 @@
         {
             <tr>
                 <td>
+                    @Html.DisplayFor(modelItem => item.Checkedin)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.RoomNumber)
                 </td>
                 <td>
@@ -38,11 +47,6 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.AmountChildren)
                 </td>
-                @*<td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                </td>*@
             </tr>
         }
     </tbody>
