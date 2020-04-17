@@ -24,10 +24,11 @@ namespace Morgenmadsbuffet.Controllers
 
         //[Authorize("IsReceptionist")]
         // GET: /<controller>/  // virker ikke
-        public IActionResult HaveBooked()
-        {
-            return View("../Bookings/Index");
-        }
+        //public IActionResult HaveBooked()
+        //{
+        //    return View("../Bookings/Index");
+        //}
+
 
         //[Authorize("IsReceptionist")]
         public IActionResult Create()
