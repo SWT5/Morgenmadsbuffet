@@ -170,5 +170,12 @@ namespace Morgenmadsbuffet.Controllers
             vm.bookings = await _context.Bookings.ToListAsync();
             return View(vm);
         }
+
+        public async Task<IActionResult> RestaurantMain()
+        {
+            var vm = new RestaurantViewModel();
+            vm.Bookings = await _context.Bookings.ToListAsync();
+            return View(vm);
+        }
     }
 }

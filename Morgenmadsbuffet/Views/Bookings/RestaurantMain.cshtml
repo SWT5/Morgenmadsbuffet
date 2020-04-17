@@ -1,0 +1,51 @@
+﻿@model RestaurantViewModel
+@{
+    ViewData["Title"] = "RestaurantMain";
+}
+
+<h1>RestaurantMain</h1>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            Checkedin
+            @*@Html.DisplayNameFor(model => model.Checkedin)*@
+        </th>
+        <th>
+            RoomNumber
+            @*@Html.DisplayNameFor(model => model.RoomNumber)*@
+        </th>
+        <th>
+            AmountAdults
+            @*@Html.DisplayNameFor(model => model.AmountAdults)*@
+        </th>
+        <th>
+            AmountChildren
+            @*@Html.DisplayNameFor(model => model.AmountChildren)*@
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model.Bookings) {
+        <tr>
+            <td>
+                <div class="form-group form-check">
+                    <label class="form-check-label">
+                        <input class="form-check-input" asp-for="Checkedin" /> @Html.DisplayNameFor(modelItem => item.Checkedin)
+                    </label>
+                </div>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoomNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AmountAdults)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AmountChildren)
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
