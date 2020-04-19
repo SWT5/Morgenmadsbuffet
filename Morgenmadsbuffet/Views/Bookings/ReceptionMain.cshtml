@@ -11,24 +11,25 @@
     <div class="card-columns">
         <a asp-action="NewBooking">New Booking</a>
     </div>
-    <div class="card-columns">
+    @*<div class="card-columns">
         <a asp-action="ReceptionCheckedIn">CheckedIn</a>
-    </div>
+    </div>*@
 </div>
 <p>
     Total Amount of guests today: @Html.DisplayFor(Model => Model.TotalAmountOfGuest)
 </p>
 
 <div>
+    Bookings the:
     <form asp-controller="Bookings" asp-action="ReceptionCheckedIn">
         <select name="Date">
-            <option value="0">Date</option>
+            <option value="0"></option>
             @foreach (var item in Model.bookings)
             {
                 <option>
                     @item.Date
                 </option>
-               
+
             }
         </select>
         @*<div>
