@@ -1,31 +1,37 @@
 ﻿@model ReceptionViewModel
 
 @{
-    ViewData["Title"] = "ReceptionMain";
+    ViewData["Title"] = "Reception";
+    <link rel="stylesheet" href="~/css/Reception.css" />
 }
 
-<h1>ReceptionMain</h1>
-<p>
-    <a asp-action="Create">Create New Booking</a>
-</p>
+<h1>Reception</h1>
+<div class="row">
+    <div class="card-columns">
+        <a asp-action="NewBooking">New Booking</a>
+    </div>
+    <div class="card-columns">
+        <a asp-action="ReceptionCheckedIn">CheckedIn</a>
+    </div>
+</div>
 <p>
     Total Amount of guests today: @Html.DisplayFor(Model => Model.TotalAmountOfGuest)
 </p>
 
 <table class="table">
     <thead>
-    <tr>
-        <th>
-            RoomNumber
-        </th>
-        <th>
-            Adults
-        </th>
-        <th>
-            Children
-        </th>
-        <th></th>
-    </tr>
+        <tr>
+            <th>
+                RoomNumber
+            </th>
+            <th>
+                Adults
+            </th>
+            <th>
+                Children
+            </th>
+            <th></th>
+        </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.bookings)
@@ -40,12 +46,17 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.AmountChildren)
                 </td>
-                @*<td>
-                    @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                    @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-                </td>*@
+                <td>
+                    <a asp-action="Edit" asp-route-id="{@item.RoomNumber}">Edit</a>  |
+                    <a asp-action="Delete" asp-route-id="@item.RoomNumber">Delete</a>
+                    @*@Html.ActionLink("Edit", "Edit", new {/* id=item.PrimaryKey */}) |
+                    @Html.ActionLink("Delete", "Delete", new {/* id=item.PrimaryKey */})*@
+                </td>
             </tr>
         }
     </tbody>
 </table>
+
+<div>
+    <a asp-controller="Home" asp-action="Index">Back to Home</a>
+</div>

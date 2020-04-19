@@ -2,31 +2,32 @@
 
 @{
     ViewData["Title"] = "ReceptionCheckedIn";
+    <link rel="stylesheet" href="~/css/Reception.css" />
 }
 
-<h1>ReceptionCheckedIn</h1>
-
+<h1>Reception</h1>
 <p>
+    Total Amount of guests today: @Html.DisplayFor(Model => Model.TotalAmountOfGuest) <br>
     Total Amount of guests checkedIn: @Html.DisplayFor(Model => Model.TotalAmountOgChecked)
 </p>
 
 <table class="table">
     <thead>
-    <tr>
-        <th>
-            CheckedIn
-        </th>
-        <th>
-            RoomNumber
-        </th>
-        <th>
-            Adults
-        </th>
-        <th>
-            Children
-        </th>
-        <th></th>
-    </tr>
+        <tr>
+            <th>
+                CheckedIn
+            </th>
+            <th>
+                RoomNumber
+            </th>
+            <th>
+                Adults
+            </th>
+            <th>
+                Children
+            </th>
+            <th></th>
+        </tr>
     </thead>
     <tbody>
         @foreach (var item in Model.bookings)
@@ -48,3 +49,6 @@
         }
     </tbody>
 </table>
+<div>
+    <a asp-action="ReceptionMain">Back to Bookings</a>
+</div>

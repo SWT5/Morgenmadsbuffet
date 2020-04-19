@@ -1,0 +1,45 @@
+﻿@model Morgenmadsbuffet.Models.Bookings
+
+@{
+    ViewData["Title"] = "NewBooking";
+}
+
+<h1>New Booking</h1>
+
+<h4>Bookings</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="NewBooking">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="RoomNumber" class="control-label"></label>
+                <input asp-for="RoomNumber" class="form-control" />
+                <span asp-validation-for="RoomNumber" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Date" class="control-label"></label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AmountAdults" class="control-label"></label>
+                <input asp-for="AmountAdults" class="form-control" />
+                <span asp-validation-for="AmountAdults" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AmountChildren" class="control-label"></label>
+                <input asp-for="AmountChildren" class="form-control" />
+                <span asp-validation-for="AmountChildren" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="ReceptionMain">Back to Bookings</a>
+</div>
+
