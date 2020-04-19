@@ -9,6 +9,7 @@ namespace Morgenmadsbuffet.Models
     public class ReceptionViewModel
     {
         public List<Bookings> bookings { get; set; }
+        public List<DateTime> CheckList { get; set; }
 
         public int TotalAmountOfGuest { get; set; }
 

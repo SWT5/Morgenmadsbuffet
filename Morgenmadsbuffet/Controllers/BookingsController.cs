@@ -172,12 +172,38 @@ namespace Morgenmadsbuffet.Controllers
             return View(vm);
         }
 
-        public async Task<IActionResult> ReceptionCheckedIn()
+        /*Mangler søgning funktionaliteterne, kan dog godt få vist datoen.*/
+        //public async Task<IActionResult> ReceptionCheckedIn(DateTime date)
+        //{
+        //    var vm = new ReceptionViewModel();
+        //    var bookings = from c in _context.Bookings select c;
+        //    var CheckindQuery = from c in _context.Bookings select c.Date;
+
+        //    if (CheckindQuery !=null)
+        //    {
+        //        bookings = bookings.Where(c => c.Date.Equals(date));
+        //    }
+        //    vm.bookings = await _context.Bookings.ToListAsync();
+        //    return View(vm);
+        //}
+
+        public async Task<IActionResult> ReceptionCheckedIn(DateTime date)
         {
             var vm = new ReceptionViewModel();
-            vm.bookings = await _context.Bookings.ToListAsync();
+
+            var bookings = from c in _context.Bookings select c;
+            
+            var CheckinQuery = from c in _context.Bookings select c.Date;
+            
+            vm.CheckList= await CheckinQuery.ToListAsync();
+            if (CheckinQuery != null)
+            {
+                bookings = bookings.Where(c => c.Date.Equals(date));
+            }
+            vm.bookings = await bookings.ToListAsync();
             return View(vm);
         }
+
 
         // GET: Bookings/Create
         public IActionResult NewBooking()
