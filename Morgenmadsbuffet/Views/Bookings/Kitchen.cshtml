@@ -1,0 +1,62 @@
+﻿@using System.Linq
+@model KitchenViewModel
+@{
+    ViewData["Title"] = "Kitchen";
+}
+
+<h1>Kitchen</h1>
+<p>
+    Total Amount of guests today: @Html.DisplayFor(Model => Model.TotalAmountOfGuest) <br>
+    Total Amount of guests checkedIn: @Html.DisplayFor(Model => Model.TotalAmountOfChecked)
+</p>
+<div>
+    <form asp-controller="Bookings" asp-action="Kitchen">
+        <label for="SearchDate">Bookings on the :</label>
+        <input type="date" id="SearchDate" name="SearchDate"/>
+        <input type="submit" value="Søg dato" />
+    </form>
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                RoomNumber
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                Adults
+            </th>
+            <th>
+                Children
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.bookings)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AmountAdults)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AmountChildren)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a asp-controller="Home" asp-action="Index">Back to Home</a>
+</div>
