@@ -6,7 +6,7 @@
 
 <h1>Kitchen</h1>
 
-<div>
+<div class="flex-grow-1">
     <form asp-controller="Bookings" asp-action="Kitchen">
         <label for="SearchDate">Bookings on the :</label>
         <input type="date" id="SearchDate" name="SearchDate" />
@@ -14,7 +14,7 @@
     </form>
 </div>
 
-<table class="table">
+<table class="table flex-grow-1">
     <thead>
     <tr>
         <th>
@@ -62,7 +62,7 @@
 </table>
 <br>
 
-<table class="table">
+<table class="table flex-grow-1">
     <thead>
         <tr>
             <th>
