@@ -23,5 +23,7 @@ namespace Morgenmadsbuffet.Models
         public int AmontOfAdultsCheckedIn { get; set; }
         public int AmontOfChildrenCheckedIn { get; set; }
 
+        public int NotCheckedInYet { get; set; }
+
     }
 }

@@ -278,7 +278,7 @@ namespace Morgenmadsbuffet.Controllers
         {
             var vm = new KitchenViewModel();
             var bookings = from b in _context.Bookings select b;
-            
+
 
             vm.bookings = await bookings.ToListAsync();
             //foreach (var booking in bookings)
@@ -288,12 +288,17 @@ namespace Morgenmadsbuffet.Controllers
             var CheckinQuery = from c in _context.Bookings select c.Date.Date;
 
 
-            vm.CheckList= await CheckinQuery.Distinct().ToListAsync();
+            vm.CheckList = await CheckinQuery.Distinct().ToListAsync();
 
             if (CheckinQuery != null)
             {
                 bookings = bookings.Where(c => c.Date.Date.Equals(searchDate.Date));
             }
+            else// kommer ikke ind i denne? 
+            {
+                bookings = bookings.Where(b =>b.Date.Date.Equals(DateTime.Today));
+            }
+
             vm.bookings = await bookings.ToListAsync();
 
             foreach (var booking in bookings)
@@ -308,6 +313,8 @@ namespace Morgenmadsbuffet.Controllers
                 vm.TotalAmontOfAdults += booking.AmountAdults;
                 vm.TotalAmontOfChildren += booking.AmountChildren;
             }
+
+            vm.NotCheckedInYet = vm.TotalAmountOfGuest - vm.TotalAmountOfChecked;
 
             return View(vm);
         }
