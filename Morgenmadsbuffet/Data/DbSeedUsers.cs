@@ -11,41 +11,23 @@ namespace Morgenmadsbuffet.Data
 {
     public class DbSeedUsers
     {
+     
         public static void SeedData(ApplicationDbContext db, UserManager<ApplicationUser> userManager, ILogger log)
         {
-            SeedReceptionist(userManager, log);
-            SeedWaiter(userManager, log);
+            SeedUsers(userManager, log);
+            //SeedReceptionist(userManager, log);
         }
 
-        public static void SeedReceptionist(UserManager<ApplicationUser> userManager, ILogger log)
+        public static void SeedUsers(UserManager<ApplicationUser> userManager, ILogger log)
         {
-            const string receptionistEmail = "receptionist@Morgenmadsbuffet.dk";
-            const string receptionistPassword = "Receptionist1!";
-
-            if (userManager.FindByNameAsync(receptionistEmail).Result == null)
-            {
-                log.LogWarning("Seeding the receptionist account");
-                var userRecptionist = new ApplicationUser
-                {
-                    UserName = receptionistEmail,
-                    Email = receptionistEmail,
-                    Name = "Receptionist"
-                };
-                IdentityResult result = userManager.CreateAsync
-                    (userRecptionist, receptionistPassword).Result;
-                if (result.Succeeded)
-                {
-                    var receptionistClaim = new Claim("Receptionist", "Yes");
-                    userManager.AddClaimAsync(userRecptionist, receptionistClaim);
-                    userRecptionist.EmailConfirmed = true;
-                }
-            }
-        }
-
-        public static void SeedWaiter(UserManager<ApplicationUser> userManager, ILogger log)
-        {
+            //Waiter information
             const string waiterEmail = "waiter@Morgenmadsbuffet.dk";
             const string waiterPassword = "Waiter1!";
+
+
+            //Receptionist information
+            const string receptionistEmail = "receptionist@Morgenmadsbuffet.dk";
+            const string receptionistPassword = "Receptionist1!";
 
             if (userManager.FindByNameAsync(waiterEmail).Result == null)
             {
@@ -54,40 +36,90 @@ namespace Morgenmadsbuffet.Data
                 {
                     UserName = waiterEmail,
                     Email = waiterEmail,
-                    Name = "Waiter"
+                    Name = "Waiter",
+                    EmailConfirmed = true
                 };
                 IdentityResult result = userManager.CreateAsync
                     (userWaiter, waiterPassword).Result;
                 if (result.Succeeded)
                 {
                     var waiterClaim = new Claim("Waiter", "Yes");
-                    userManager.AddClaimAsync(userWaiter, waiterClaim);
-                    userWaiter.EmailConfirmed = true;
+                    userManager.AddClaimAsync(userWaiter, waiterClaim).Wait();
                 }
+
+            }
+
+            if (userManager.FindByNameAsync(receptionistEmail).Result == null)
+            {
+                log.LogWarning("Seeding the receptionist account");
+                var userReceptionist = new ApplicationUser
+                {
+                    UserName = receptionistEmail,
+                    Email = receptionistEmail,
+                    Name = "Waiter",
+                    EmailConfirmed = true
+                };
+                IdentityResult result = userManager.CreateAsync
+                    (userReceptionist, receptionistPassword).Result;
+                if (result.Succeeded)
+                {
+                    var receptionistClaim = new Claim("Receptionist", "Yes");
+                    userManager.AddClaimAsync(userReceptionist, receptionistClaim).Wait();
+                }
+
             }
         }
 
-
-        //********No need for this account*************
-        //public static void SeedKitchen(UserManager<ApplicationUser> userManager, ILogger log)
+        //public static void SeedReceptionist(UserManager<ApplicationUser> userManager, ILogger log)
         //{
-        //    const string kitchenEmail = "kitchen@Morgenmadsbuffet.dk";
-        //    const string kitchenPassword = "kitchen1!";
+        //    const string receptionistEmail = "receptionist@Morgenmadsbuffet.dk";
+        //    const string receptionistPassword = "Receptionist1!";
 
-        //    if (userManager.FindByNameAsync(kitchenEmail).Result == null)
+        //    if (userManager.FindByNameAsync(receptionistEmail).Result == null)
         //    {
-        //        log.LogWarning("Seeding the kitchen account");
-        //        var user = new ApplicationUser
+        //        log.LogWarning("Seeding the receptionist account");
+        //        var userRecptionist = new ApplicationUser
         //        {
-        //            UserName = kitchenEmail,
-        //            Email = kitchenEmail,
-        //            Name = "Kitchen"
+        //            UserName = receptionistEmail,
+        //            Email = receptionistEmail,
+        //            Name = "Receptionist",
+        //            EmailConfirmed = true
+
         //        };
         //        IdentityResult result = userManager.CreateAsync
-        //            (user, kitchenPassword).Result;
+        //            (userRecptionist, receptionistPassword).Result;
+        //        if (result.Succeeded)
+        //        {
+        //            var receptionistClaim = new Claim("Receptionist", "Yes");
+        //            userManager.AddClaimAsync(userRecptionist, receptionistClaim).Wait();
+                    
+        //        }
         //    }
         //}
 
+        //public static void SeedWaiter(UserManager<ApplicationUser> userManager, ILogger log)
+        //{
+        //    const string waiterEmail = "waiter@Morgenmadsbuffet.dk";
+        //    const string waiterPassword = "Waiter1!";
 
+        //    if (userManager.FindByNameAsync(waiterEmail).Result == null)
+        //    {
+        //        log.LogWarning("Seeding the waiter account");
+        //        var userWaiter = new ApplicationUser
+        //        {
+        //            UserName = waiterEmail,
+        //            Email = waiterEmail,
+        //            Name = "Waiter"
+        //        };
+        //        IdentityResult result = userManager.CreateAsync
+        //        (userWaiter, waiterPassword).Result;
+        //        if (result.Succeeded)
+        //        {
+        //            var waiterClaim = new Claim("Waiter", "Yes");
+        //            userManager.AddClaimAsync(userWaiter, waiterClaim);
+        //            userWaiter.EmailConfirmed = true;
+        //        }
+        //    }
+        //}
     }
 }

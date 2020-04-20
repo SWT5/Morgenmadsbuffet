@@ -247,6 +247,7 @@ namespace Morgenmadsbuffet.Controllers
 
         }
 
+        [Authorize("IsWaiter")]
         [HttpPost]
         public async Task<IActionResult> RestaurantMain(RestaurantViewModel model)
         {
@@ -272,9 +273,6 @@ namespace Morgenmadsbuffet.Controllers
 
         }
 
-
-
-
         //************************ Kitchen **************************************************
         // GET: Bookings kitchen
         public async Task<IActionResult> Kitchen(DateTime searchDate)
@@ -284,10 +282,6 @@ namespace Morgenmadsbuffet.Controllers
 
 
             vm.bookings = await bookings.ToListAsync();
-            //foreach (var booking in bookings)
-            //{
-            //    vm.TotalAmountOfGuest += booking.AmountAdults + booking.AmountChildren;
-            //}
             var CheckinQuery = from c in _context.Bookings select c.Date.Date;
 
 

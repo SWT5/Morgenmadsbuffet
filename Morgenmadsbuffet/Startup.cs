@@ -56,7 +56,8 @@ namespace Morgenmadsbuffet
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, 
             UserManager<ApplicationUser> userManager, 
-            ApplicationDbContext context, ILogger<Startup> log)
+            ApplicationDbContext context, 
+            ILogger<Startup> log)
         {
             if (env.IsDevelopment())
             {
@@ -76,9 +77,8 @@ namespace Morgenmadsbuffet
 
             app.UseAuthentication();
             app.UseAuthorization();
-            
-            DbSeedUsers.SeedData(context,userManager, log);
 
+            DbSeedUsers.SeedData(context, userManager, log);
 
             app.UseEndpoints(endpoints =>
             {

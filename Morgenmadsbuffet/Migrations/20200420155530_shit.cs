@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Morgenmadsbuffet.Data.Migrations
+namespace Morgenmadsbuffet.Migrations
 {
-    public partial class init : Migration
+    public partial class shit : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
