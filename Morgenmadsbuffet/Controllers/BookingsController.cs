@@ -239,8 +239,17 @@ namespace Morgenmadsbuffet.Controllers
 
         public async Task<IActionResult> RestaurantMain()
         {
+            var bookings = from b in _context.Bookings select b;
             var vm = new RestaurantViewModel();
             vm.Bookings = await _context.Bookings.ToListAsync();
+            foreach (var booking in bookings)
+            {
+                if (booking.Checkedin == true)
+                {
+                    vm.TotalAmountGuests += booking.AmountAdults + booking.AmountChildren;
+                }
+
+            }
             _context.SaveChanges();
             return View(vm);
 
@@ -249,12 +258,22 @@ namespace Morgenmadsbuffet.Controllers
         [HttpPost]
         public async Task<IActionResult> RestaurantMain(RestaurantViewModel model)
         {
+
             var vm = new RestaurantViewModel();
+            var bookings = from b in _context.Bookings select b;
             vm.Bookings = await _context.Bookings.ToListAsync();
 
             for (int i = 0; i < model.Bookings.Count(); i++)
             {
                 vm.Bookings[i].Checkedin = model.Bookings[i].Checkedin;
+            }
+            foreach (var booking in bookings)
+            {
+                if (booking.Checkedin == true)
+                {
+                    vm.TotalAmountGuests += booking.AmountAdults + booking.AmountChildren;
+                }
+
             }
             _context.SaveChanges();
             return View(vm);

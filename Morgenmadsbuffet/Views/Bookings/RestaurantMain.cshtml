@@ -5,30 +5,31 @@
     ViewData["Title"] = "RestaurantMain";
 }
 
-<h1>RestaurantMain</h1>
+<h1>Restaurant</h1>
 
 
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    Checked In
-                    @*@Html.DisplayNameFor(model => model.Checkedin)*@
-                </th>
-                <th>
-                    Room Number
-                    @*@Html.DisplayNameFor(model => model.RoomNumber)*@
-                </th>
-                <th>
-                    Amount of Adults
-                    @*@Html.DisplayNameFor(model => model.AmountAdults)*@
-                </th>
-                <th>
-                    Amount of Children
-                    @*@Html.DisplayNameFor(model => model.AmountChildren)*@
-                </th>
-                
+<table class="table">
+    <thead>
+        Total checked in: @Model.TotalAmountGuests <br />
+
+        <tr>
+            <th>
+                Checked In
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                Room Number
+            </th>
+            <th>
+                Amount of Adults
+            </th>
+            <th>
+                Amount of Children
+            </th>
+
         </tr>
         </thead>
         <tbody>
@@ -39,7 +40,9 @@
                         <td>
                             @Html.CheckBoxFor(r => r.Bookings[i].Checkedin)
                         </td>
-
+                        <td>
+                            @Model.Bookings[i].Date
+                        </td>
                         <td>
                             @Model.Bookings[i].RoomNumber
                         </td>
@@ -51,12 +54,14 @@
                         </td>
                     </tr>
                 }
-            <tr>
-                <input type="submit" value="save" />
-                Total bookings: @Model.TotalAmountGuests
-            </tr>
-              
-            </form>
-        </tbody>
-    </table>
 
+
+
+
+        </form>
+    </tbody>
+</table>
+<div>
+    <input type="submit" value="save" /> <br/><br />
+    <a asp-controller="Home" asp-action="Index">Back to Kitchen</a>
+</div>
