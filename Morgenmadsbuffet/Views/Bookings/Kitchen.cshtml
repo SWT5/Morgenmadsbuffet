@@ -5,18 +5,62 @@
 }
 
 <h1>Kitchen</h1>
-<p>
-    Total Amount of guests today: @Html.DisplayFor(Model => Model.TotalAmountOfGuest) <br>
-    Total Amount of guests checkedIn: @Html.DisplayFor(Model => Model.TotalAmountOfChecked)
-</p>
+
 <div>
     <form asp-controller="Bookings" asp-action="Kitchen">
         <label for="SearchDate">Bookings on the :</label>
-        <input type="date" id="SearchDate" name="SearchDate"/>
+        <input type="date" id="SearchDate" name="SearchDate" />
         <input type="submit" value="Søg dato" />
     </form>
 </div>
 
+<table class="table">
+    <thead>
+    <tr>
+        <th>
+            Amount of guests today
+        </th>
+        <th>
+            Adults
+        </th>
+        <th>
+            Children
+        </th>
+        <th>
+           Guests CheckedIn today
+        </th>
+        <th>
+            Adults CheckedIn
+        </th>
+        <th>
+            Children CheckedIn
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>
+                @Html.DisplayFor(Model => Model.TotalAmountOfGuest)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => Model.TotalAmontOfAdults)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => Model.TotalAmontOfChildren)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => Model.TotalAmountOfChecked)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => Model.AmontOfAdultsCheckedIn)
+            </td>
+            <td>
+                @Html.DisplayFor(Model => Model.AmontOfChildrenCheckedIn)
+            </td>
+        </tr>
+    </tbody>
+</table>
+<br>
 
 <table class="table">
     <thead>
