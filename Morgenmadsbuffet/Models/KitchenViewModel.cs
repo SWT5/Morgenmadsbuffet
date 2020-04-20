@@ -14,7 +14,14 @@ namespace Morgenmadsbuffet.Models
 
         public int TotalAmountOfGuest { get; set; }
 
+        public int TotalAmontOfAdults { get; set; }
+
+        public int TotalAmontOfChildren { get; set; }
+
         public int TotalAmountOfChecked { get; set; }
+
+        public int AmontOfAdultsCheckedIn { get; set; }
+        public int AmontOfChildrenCheckedIn { get; set; }
 
     }
 }

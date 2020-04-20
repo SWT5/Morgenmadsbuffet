@@ -282,8 +282,12 @@ namespace Morgenmadsbuffet.Controllers
                 if (booking.Checkedin == true)
                 {
                     vm.TotalAmountOfChecked += booking.AmountAdults + booking.AmountChildren;
+                    vm.AmontOfAdultsCheckedIn += booking.AmountAdults;
+                    vm.AmontOfChildrenCheckedIn += booking.AmountChildren; 
                 }
                 vm.TotalAmountOfGuest += booking.AmountAdults + booking.AmountChildren;
+                vm.TotalAmontOfAdults += booking.AmountAdults;
+                vm.TotalAmontOfChildren += booking.AmountChildren;
             }
 
             return View(vm);
