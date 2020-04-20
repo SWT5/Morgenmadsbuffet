@@ -1,0 +1,8 @@
+﻿
+.row {
+    margin-left: unset;
+}
+
+.card-columns {
+     -webkit-column-count: 2;
+}

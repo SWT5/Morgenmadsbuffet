@@ -173,14 +173,64 @@ namespace Morgenmadsbuffet.Controllers
             return View(vm);
         }
 
-        public async Task<IActionResult> ReceptionCheckedIn()
+        /*Mangler søgning funktionaliteterne, kan dog godt få vist datoen.*/
+        //public async Task<IActionResult> ReceptionCheckedIn(DateTime date)
+        //{
+        //    var vm = new ReceptionViewModel();
+        //    var bookings = from c in _context.Bookings select c;
+        //    var CheckindQuery = from c in _context.Bookings select c.Date;
+
+        //    if (CheckindQuery !=null)
+        //    {
+        //        bookings = bookings.Where(c => c.Date.Equals(date));
+        //    }
+        //    vm.bookings = await _context.Bookings.ToListAsync();
+        //    return View(vm);
+        //}
+
+        public async Task<IActionResult> ReceptionCheckedIn(DateTime searchDate)
         {
             var vm = new ReceptionViewModel();
-            vm.bookings = await _context.Bookings.ToListAsync();
+
+            var bookings = from b in _context.Bookings select b;
+            
+            var CheckinQuery = from c in _context.Bookings select c.Date.Date;
+
+
+            vm.CheckList= await CheckinQuery.Distinct().ToListAsync();
+
+            if (CheckinQuery != null)
+            {
+                bookings = bookings.Where(c => c.Date.Date.Equals(searchDate.Date));
+            }
+            vm.bookings = await bookings.ToListAsync();
             return View(vm);
         }
 
 
+        // GET: Bookings/Create
+        public IActionResult NewBooking()
+        {
+            return View();
+        }
+
+        // POST: Bookings/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> NewBooking([Bind("RoomNumber,Date,Checkedin,AmountAdults,AmountChildren")] Bookings bookings)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(bookings);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(bookings);
+        }
+
+        
         //***********************Resturant part ****************************************
 
 
