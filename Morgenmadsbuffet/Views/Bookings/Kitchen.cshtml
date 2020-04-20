@@ -9,33 +9,27 @@
 <div class="flex-grow-1">
     <form asp-controller="Bookings" asp-action="Kitchen">
         <label for="SearchDate">Bookings on the :</label>
-        <input type="date" id="SearchDate" name="SearchDate" />
-        <input type="submit" value="Søg dato" />
+        <input type="date" id="SearchDate" name="SearchDate"/>
+        <input type="submit" value="Søg dato"/>
     </form>
 </div>
-
+<br>
 <table class="table flex-grow-1">
     <thead>
-    <tr>
-        <th>
-            Amount of guests today
-        </th>
-        <th>
-            Adults
-        </th>
-        <th>
-            Children
-        </th>
-        <th>
-           Guests CheckedIn today
-        </th>
-        <th>
-            Adults CheckedIn
-        </th>
-        <th>
-            Children CheckedIn
-        </th>
-    </tr>
+        <tr>
+            <th>
+                Amount of guests today
+            </th>
+            <th>
+                Not Yet Checked In
+            </th>
+            <th>
+                Adults
+            </th>
+            <th>
+                Children
+            </th>
+        </tr>
     </thead>
     <tbody>
         <tr>
@@ -43,21 +37,44 @@
                 @Html.DisplayFor(Model => Model.TotalAmountOfGuest)
             </td>
             <td>
+                @Html.DisplayFor(Model=> Model.NotCheckedInYet)
+            </td>
+            <td>
                 @Html.DisplayFor(Model => Model.TotalAmontOfAdults)
             </td>
             <td>
                 @Html.DisplayFor(Model => Model.TotalAmontOfChildren)
             </td>
-            <td>
-                @Html.DisplayFor(Model => Model.TotalAmountOfChecked)
-            </td>
-            <td>
-                @Html.DisplayFor(Model => Model.AmontOfAdultsCheckedIn)
-            </td>
-            <td>
-                @Html.DisplayFor(Model => Model.AmontOfChildrenCheckedIn)
-            </td>
         </tr>
+    </tbody>
+</table>
+<br>
+<table class="table flex-grow-1">
+    <thead>
+    <tr>
+        <th>
+            Checked In Guests today
+        </th>
+        <th>
+            Adults
+        </th>
+        <th>
+            Children
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>
+            @Html.DisplayFor(Model => Model.TotalAmountOfChecked)
+        </td>
+        <td>
+            @Html.DisplayFor(Model => Model.AmontOfAdultsCheckedIn)
+        </td>
+        <td>
+            @Html.DisplayFor(Model => Model.AmontOfChildrenCheckedIn)
+        </td>
+    </tr>
     </tbody>
 </table>
 <br>
@@ -70,6 +87,9 @@
             </th>
             <th>
                 Date
+            </th>
+            <th>
+                Checked In
             </th>
             <th>
                 Adults
@@ -89,6 +109,9 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem =>item.Checkedin)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.AmountAdults)
