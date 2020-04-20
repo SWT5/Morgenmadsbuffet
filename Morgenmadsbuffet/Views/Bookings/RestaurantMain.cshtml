@@ -8,60 +8,56 @@
 <h1>Restaurant</h1>
 
 
+<form method="post">
+    <table class="table">
+        <thead>
+            Total checked in: @Model.TotalAmountGuests
+            <br />
 
-<table class="table">
-    <thead>
-        Total checked in: @Model.TotalAmountGuests <br />
+            <tr>
+                <th>
+                    Checked In
+                </th>
+                <th>
+                    Date
+                </th>
+                <th>
+                    Room Number
+                </th>
+                <th>
+                    Amount of Adults
+                </th>
+                <th>
+                    Amount of Children
+                </th>
 
-        <tr>
-            <th>
-                Checked In
-            </th>
-            <th>
-                Date
-            </th>
-            <th>
-                Room Number
-            </th>
-            <th>
-                Amount of Adults
-            </th>
-            <th>
-                Amount of Children
-            </th>
-
-        </tr>
+            </tr>
         </thead>
         <tbody>
-            <form method="post">
-                @for (int i = 0; i < Model.Bookings.Count(); i++)
-                {
-                    <tr>
-                        <td>
-                            @Html.CheckBoxFor(r => r.Bookings[i].Checkedin)
-                        </td>
-                        <td>
-                            @Model.Bookings[i].Date
-                        </td>
-                        <td>
-                            @Model.Bookings[i].RoomNumber
-                        </td>
-                        <td>
-                            @Model.Bookings[i].AmountAdults
-                        </td>
-                        <td>
-                            @Model.Bookings[i].AmountChildren
-                        </td>
-                    </tr>
-                }
 
+            @for (int i = 0; i < Model.Bookings.Count(); i++)
+            {
+                <tr>
+                    <td>
+                        @Html.CheckBoxFor(r => r.Bookings[i].Checkedin)
+                    </td>
+                    <td>
+                        @Model.Bookings[i].Date
+                    </td>
+                    <td>
+                        @Model.Bookings[i].RoomNumber
+                    </td>
+                    <td>
+                        @Model.Bookings[i].AmountAdults
+                    </td>
+                    <td>
+                        @Model.Bookings[i].AmountChildren
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <input type="submit" value="save" /> <br /><br />
+</form>
+<a asp-controller="Home" asp-action="Index">Back to Kitchen</a>
 
-
-
-        </form>
-    </tbody>
-</table>
-<div>
-    <input type="submit" value="save" /> <br/><br />
-    <a asp-controller="Home" asp-action="Index">Back to Kitchen</a>
-</div>
