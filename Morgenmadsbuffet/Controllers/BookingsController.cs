@@ -294,10 +294,6 @@ namespace Morgenmadsbuffet.Controllers
             {
                 bookings = bookings.Where(c => c.Date.Date.Equals(searchDate.Date));
             }
-            else// kommer ikke ind i denne? 
-            {
-                bookings = bookings.Where(b =>b.Date.Date.Equals(DateTime.Today));
-            }
 
             vm.bookings = await bookings.ToListAsync();
 
