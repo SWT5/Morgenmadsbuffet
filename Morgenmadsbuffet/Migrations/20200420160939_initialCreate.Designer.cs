@@ -10,8 +10,8 @@ using Morgenmadsbuffet.Data;
 namespace Morgenmadsbuffet.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20200420155530_shit")]
-    partial class shit
+    [Migration("20200420160939_initialCreate")]
+    partial class initialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
