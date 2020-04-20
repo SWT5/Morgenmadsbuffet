@@ -12,9 +12,6 @@
         <a asp-action="NewBooking">New Booking</a>
     </div>
 </div>
-<p>
-    Total Amount of guests today: @Html.DisplayFor(Model => Model.TotalAmountOfGuest)
-</p>
 
 <div>
     <form asp-controller="Bookings" asp-action="ReceptionCheckedIn">
@@ -60,8 +57,8 @@
                     @Html.DisplayFor(modelItem => item.AmountChildren)
                 </td>
                 <td>
-                    <a asp-action="Edit" asp-route-id="{@item.RoomNumber}">Edit</a>  |
-                    <a asp-action="Delete" asp-route-id="@item.RoomNumber">Delete</a>
+                    @*<a asp-action="Edit" asp-route-id="{@item.RoomNumber}">Edit</a>  |
+                    <a asp-action="Delete" asp-route-id="@item.RoomNumber">Delete</a>*@
                     @*@Html.ActionLink("Edit", "Edit", new {/* id=item.PrimaryKey */}) |
                     @Html.ActionLink("Delete", "Delete", new {/* id=item.PrimaryKey */})*@
                 </td>

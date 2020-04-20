@@ -173,10 +173,10 @@ namespace Morgenmadsbuffet.Controllers
             
 
             vm.bookings = await bookings.ToListAsync();
-            foreach (var booking in bookings)
-            {
-                vm.TotalAmountOfGuest += booking.AmountAdults + booking.AmountChildren;
-            }
+            //foreach (var booking in bookings)
+            //{
+            //    vm.TotalAmountOfGuest += booking.AmountAdults + booking.AmountChildren;
+            //}
             return View(vm);
         }
 
