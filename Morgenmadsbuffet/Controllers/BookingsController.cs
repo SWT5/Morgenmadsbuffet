@@ -187,18 +187,20 @@ namespace Morgenmadsbuffet.Controllers
         //    return View(vm);
         //}
 
-        public async Task<IActionResult> ReceptionCheckedIn(DateTime date)
+        public async Task<IActionResult> ReceptionCheckedIn(DateTime searchDate)
         {
             var vm = new ReceptionViewModel();
 
-            var bookings = from c in _context.Bookings select c;
+            var bookings = from b in _context.Bookings select b;
             
-            var CheckinQuery = from c in _context.Bookings select c.Date;
-            
-            vm.CheckList= await CheckinQuery.ToListAsync();
+            var CheckinQuery = from c in _context.Bookings select c.Date.Date;
+
+
+            vm.CheckList= await CheckinQuery.Distinct().ToListAsync();
+
             if (CheckinQuery != null)
             {
-                bookings = bookings.Where(c => c.Date.Equals(date));
+                bookings = bookings.Where(c => c.Date.Date.Equals(searchDate.Date));
             }
             vm.bookings = await bookings.ToListAsync();
             return View(vm);

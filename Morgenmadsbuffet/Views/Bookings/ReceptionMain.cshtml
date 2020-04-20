@@ -11,40 +11,19 @@
     <div class="card-columns">
         <a asp-action="NewBooking">New Booking</a>
     </div>
-    @*<div class="card-columns">
-        <a asp-action="ReceptionCheckedIn">CheckedIn</a>
-    </div>*@
 </div>
 <p>
     Total Amount of guests today: @Html.DisplayFor(Model => Model.TotalAmountOfGuest)
 </p>
 
 <div>
-    Bookings the:
     <form asp-controller="Bookings" asp-action="ReceptionCheckedIn">
-        <select name="Date">
-            <option value="0"></option>
-            @foreach (var item in Model.bookings)
-            {
-                <option>
-                    @item.Date
-                </option>
-
-            }
-        </select>
-        @*<div>
-            <div class="form-group">
-                <form asp-action="ReceptionCheckedIn" asp-controller="Bookings">
-                    <input type="Date" asp-for="bookings"/>
-                    <label asp-route="Date" class="control-label"></label>
-                    <span asp-validation-route="Booking.Date" class="text-danger"></span>
-                   
-                </form>
-            </div>
-        </div>*@
+        <label for="SearchDate">Bookings on the :</label>
+        <input type="date" id="SearchDate" name="SearchDate"/>
         <input type="submit" value="Søg dato"/>
     </form>
 </div>
+
 
 <table class="table">
     <thead>
