@@ -12,6 +12,8 @@ using Morgenmadsbuffet.Data;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using Morgenmadsbuffet.Models;
 
 namespace Morgenmadsbuffet
 {
@@ -30,7 +32,7 @@ namespace Morgenmadsbuffet
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddControllersWithViews();
             services.AddRazorPages();
@@ -52,7 +54,9 @@ namespace Morgenmadsbuffet
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, 
+            UserManager<ApplicationUser> userManager, 
+            ApplicationDbContext context, ILogger<Startup> log)
         {
             if (env.IsDevelopment())
             {
@@ -72,6 +76,9 @@ namespace Morgenmadsbuffet
 
             app.UseAuthentication();
             app.UseAuthorization();
+            
+            DbSeedUsers.SeedData(context,userManager, log);
+
 
             app.UseEndpoints(endpoints =>
             {

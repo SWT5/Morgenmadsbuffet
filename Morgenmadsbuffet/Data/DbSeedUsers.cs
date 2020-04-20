@@ -25,18 +25,19 @@ namespace Morgenmadsbuffet.Data
             if (userManager.FindByNameAsync(receptionistEmail).Result == null)
             {
                 log.LogWarning("Seeding the receptionist account");
-                var user = new ApplicationUser
+                var userRecptionist = new ApplicationUser
                 {
                     UserName = receptionistEmail,
                     Email = receptionistEmail,
                     Name = "Receptionist"
                 };
                 IdentityResult result = userManager.CreateAsync
-                    (user, receptionistPassword).Result;
+                    (userRecptionist, receptionistPassword).Result;
                 if (result.Succeeded)
                 {
                     var receptionistClaim = new Claim("Receptionist", "Yes");
-                    userManager.AddClaimAsync(user, receptionistClaim);
+                    userManager.AddClaimAsync(userRecptionist, receptionistClaim);
+                    userRecptionist.EmailConfirmed = true;
                 }
             }
         }
@@ -49,18 +50,19 @@ namespace Morgenmadsbuffet.Data
             if (userManager.FindByNameAsync(waiterEmail).Result == null)
             {
                 log.LogWarning("Seeding the waiter account");
-                var user = new ApplicationUser
+                var userWaiter = new ApplicationUser
                 {
                     UserName = waiterEmail,
                     Email = waiterEmail,
                     Name = "Waiter"
                 };
                 IdentityResult result = userManager.CreateAsync
-                    (user, waiterPassword).Result;
+                    (userWaiter, waiterPassword).Result;
                 if (result.Succeeded)
                 {
                     var waiterClaim = new Claim("Waiter", "Yes");
-                    userManager.AddClaimAsync(user, waiterClaim);
+                    userManager.AddClaimAsync(userWaiter, waiterClaim);
+                    userWaiter.EmailConfirmed = true;
                 }
             }
         }

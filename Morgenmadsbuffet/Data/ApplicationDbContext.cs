@@ -17,7 +17,7 @@ namespace Morgenmadsbuffet.Data
         }
 
         public DbSet<Bookings> Bookings { get; set; }
-
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

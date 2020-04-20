@@ -154,6 +154,7 @@ namespace Morgenmadsbuffet.Controllers
 
         // ****************** Recetion part *************************
 
+        [Authorize ("IsReceptionist")]
         // GET: Bookings reception
         public async Task<IActionResult> ReceptionMain()
         {
@@ -169,6 +170,7 @@ namespace Morgenmadsbuffet.Controllers
             return View(vm);
         }
 
+        [Authorize("IsReceptionist")]
 
         public async Task<IActionResult> ReceptionCheckedIn(DateTime searchDate)
         {
@@ -199,6 +201,7 @@ namespace Morgenmadsbuffet.Controllers
             return View(vm);
         }
 
+        [Authorize("IsReceptionist")]
 
         // GET: Bookings/Create
         public IActionResult NewBooking()
@@ -225,7 +228,7 @@ namespace Morgenmadsbuffet.Controllers
         
         //***********************Resturant part ****************************************
 
-
+        [Authorize("IsWaiter")]
         public async Task<IActionResult> RestaurantMain()
         {
             var bookings = from b in _context.Bookings select b;
