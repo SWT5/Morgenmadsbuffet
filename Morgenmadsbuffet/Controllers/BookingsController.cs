@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -232,15 +233,32 @@ namespace Morgenmadsbuffet.Controllers
             return View(bookings);
         }
 
-
         
         //***********************Resturant part ****************************************
+
 
         public async Task<IActionResult> RestaurantMain()
         {
             var vm = new RestaurantViewModel();
             vm.Bookings = await _context.Bookings.ToListAsync();
+            _context.SaveChanges();
             return View(vm);
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> RestaurantMain(RestaurantViewModel model)
+        {
+            var vm = new RestaurantViewModel();
+            vm.Bookings = await _context.Bookings.ToListAsync();
+
+            for (int i = 0; i < model.Bookings.Count(); i++)
+            {
+                vm.Bookings[i].Checkedin = model.Bookings[i].Checkedin;
+            }
+            _context.SaveChanges();
+            return View(vm);
+
         }
     }
 }

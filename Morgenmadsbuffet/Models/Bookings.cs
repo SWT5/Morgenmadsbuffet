@@ -13,6 +13,6 @@ namespace Morgenmadsbuffet.Models
         public bool Checkedin { get; set; }
         public int AmountAdults { get; set; }
         public int AmountChildren { get; set; }
-
+        
     }
 }
