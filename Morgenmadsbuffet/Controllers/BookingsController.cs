@@ -168,24 +168,17 @@ namespace Morgenmadsbuffet.Controllers
             //    vm.TotalAmountOfGuest += (booking.AmountAdults + booking.AmountChildren);
             //}
 
-            vm.bookings = await _context.Bookings.ToListAsync();
+            var bookings = from b in _context.Bookings select b;
+            
+
+            vm.bookings = await bookings.ToListAsync();
+            foreach (var booking in bookings)
+            {
+                vm.TotalAmountOfGuest += booking.AmountAdults + booking.AmountChildren;
+            }
             return View(vm);
         }
 
-        /*Mangler søgning funktionaliteterne, kan dog godt få vist datoen.*/
-        //public async Task<IActionResult> ReceptionCheckedIn(DateTime date)
-        //{
-        //    var vm = new ReceptionViewModel();
-        //    var bookings = from c in _context.Bookings select c;
-        //    var CheckindQuery = from c in _context.Bookings select c.Date;
-
-        //    if (CheckindQuery !=null)
-        //    {
-        //        bookings = bookings.Where(c => c.Date.Equals(date));
-        //    }
-        //    vm.bookings = await _context.Bookings.ToListAsync();
-        //    return View(vm);
-        //}
 
         public async Task<IActionResult> ReceptionCheckedIn(DateTime searchDate)
         {
@@ -203,6 +196,16 @@ namespace Morgenmadsbuffet.Controllers
                 bookings = bookings.Where(c => c.Date.Date.Equals(searchDate.Date));
             }
             vm.bookings = await bookings.ToListAsync();
+
+            foreach (var booking in bookings)
+            {
+                if (booking.Checkedin == true)
+                {
+                    vm.TotalAmountOgChecked += booking.AmountAdults + booking.AmountChildren;
+                }
+                vm.TotalAmountOfGuest += booking.AmountAdults + booking.AmountChildren;
+            }
+
             return View(vm);
         }
 
@@ -224,7 +227,7 @@ namespace Morgenmadsbuffet.Controllers
             {
                 _context.Add(bookings);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(ReceptionMain));
             }
             return View(bookings);
         }
