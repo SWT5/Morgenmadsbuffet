@@ -84,7 +84,7 @@ namespace Morgenmadsbuffet
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Bookings}/{action=Kitchen}/{id?}");
                 endpoints.MapRazorPages();
             });
         }
