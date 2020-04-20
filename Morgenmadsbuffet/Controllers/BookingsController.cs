@@ -158,17 +158,6 @@ namespace Morgenmadsbuffet.Controllers
         public async Task<IActionResult> ReceptionMain()
         {
             var vm = new ReceptionViewModel();
-            // dette virker ikke :( 
-
-            //foreach (var booking in vm.bookings)
-            //{
-            //    //if (booking.Date != DateTime.Today )
-            //    //{
-            //    //}
-            //    //else 
-            //    vm.TotalAmountOfGuest += (booking.AmountAdults + booking.AmountChildren);
-            //}
-
             var bookings = from b in _context.Bookings select b;
             
 
@@ -259,6 +248,45 @@ namespace Morgenmadsbuffet.Controllers
             _context.SaveChanges();
             return View(vm);
 
+        }
+
+
+
+
+        //************************ Kitchen **************************************************
+        // GET: Bookings kitchen
+        public async Task<IActionResult> Kitchen(DateTime searchDate)
+        {
+            var vm = new KitchenViewModel();
+            var bookings = from b in _context.Bookings select b;
+            
+
+            vm.bookings = await bookings.ToListAsync();
+            //foreach (var booking in bookings)
+            //{
+            //    vm.TotalAmountOfGuest += booking.AmountAdults + booking.AmountChildren;
+            //}
+            var CheckinQuery = from c in _context.Bookings select c.Date.Date;
+
+
+            vm.CheckList= await CheckinQuery.Distinct().ToListAsync();
+
+            if (CheckinQuery != null)
+            {
+                bookings = bookings.Where(c => c.Date.Date.Equals(searchDate.Date));
+            }
+            vm.bookings = await bookings.ToListAsync();
+
+            foreach (var booking in bookings)
+            {
+                if (booking.Checkedin == true)
+                {
+                    vm.TotalAmountOfChecked += booking.AmountAdults + booking.AmountChildren;
+                }
+                vm.TotalAmountOfGuest += booking.AmountAdults + booking.AmountChildren;
+            }
+
+            return View(vm);
         }
     }
 }
