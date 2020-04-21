@@ -9,7 +9,9 @@
 <h1>Reception</h1>
 <div class="row">
     <div class="card-columns">
-        <a asp-action="NewBooking">New Booking</a>
+        <a asp-action="NewBooking">
+            <button label="new booking">New Booking</button>
+        </a>
     </div>
 </div>
 
@@ -17,7 +19,7 @@
     <form asp-controller="Bookings" asp-action="ReceptionCheckedIn">
         <label for="SearchDate">Bookings on the :</label>
         <input type="date" id="SearchDate" name="SearchDate"/>
-        <input type="submit" value="Søg dato"/>
+        <input type="submit" value="Search Date"/>
     </form>
 </div>
 
@@ -68,5 +70,7 @@
 </table>
 
 <div>
-    <a asp-controller="Bookings" asp-action="Kitchen">Back to Kitchen</a>
+    <a asp-controller="Bookings" asp-action="Kitchen">
+        <button label="back to home">Back to Kitchen</button>
+    </a>
 </div>

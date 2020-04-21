@@ -14,17 +14,5 @@ namespace Morgenmadsbuffet.Models
         public DateTime Date { get; set; }
         public int TotalAmountGuests { get; set; }
 
-        //public int TotalAmountGuests
-        //{
-            
-        //    get => total;
-        //    set
-        //    {
-        //        for (int i = 0; i < Bookings.Count(); i++)
-        //        {
-        //            total = Bookings[i].AmountAdults + Bookings[i].AmountChildren;
-        //        }
-        //    }
-        //}
     }
 }
